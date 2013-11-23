@@ -1,0 +1,424 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		34BA4CB318409D8600021605 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34BA4CB218409D8600021605 /* Foundation.framework */; };
+		34BA4CB818409D8600021605 /* RoombaController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 34BA4CB718409D8600021605 /* RoombaController.h */; };
+		34BA4CBA18409D8600021605 /* RoombaController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34BA4CB918409D8600021605 /* RoombaController.m */; };
+		34BA4CC118409D8600021605 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34BA4CC018409D8600021605 /* XCTest.framework */; };
+		34BA4CC218409D8600021605 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34BA4CB218409D8600021605 /* Foundation.framework */; };
+		34BA4CC418409D8600021605 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34BA4CC318409D8600021605 /* UIKit.framework */; };
+		34BA4CC718409D8600021605 /* libRoombaController.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 34BA4CAF18409D8600021605 /* libRoombaController.a */; };
+		34BA4CCD18409D8600021605 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 34BA4CCB18409D8600021605 /* InfoPlist.strings */; };
+		34BA4CCF18409D8600021605 /* RoombaControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 34BA4CCE18409D8600021605 /* RoombaControllerTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		34BA4CC518409D8600021605 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 34BA4CA718409D8600021605 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 34BA4CAE18409D8600021605;
+			remoteInfo = RoombaController;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		34BA4CAD18409D8600021605 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+				34BA4CB818409D8600021605 /* RoombaController.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		34BA4CAF18409D8600021605 /* libRoombaController.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRoombaController.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		34BA4CB218409D8600021605 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		34BA4CB618409D8600021605 /* RoombaController-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RoombaController-Prefix.pch"; sourceTree = "<group>"; };
+		34BA4CB718409D8600021605 /* RoombaController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoombaController.h; sourceTree = "<group>"; };
+		34BA4CB918409D8600021605 /* RoombaController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoombaController.m; sourceTree = "<group>"; };
+		34BA4CBF18409D8600021605 /* RoombaControllerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RoombaControllerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		34BA4CC018409D8600021605 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		34BA4CC318409D8600021605 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		34BA4CCA18409D8600021605 /* RoombaControllerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RoombaControllerTests-Info.plist"; sourceTree = "<group>"; };
+		34BA4CCC18409D8600021605 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		34BA4CCE18409D8600021605 /* RoombaControllerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoombaControllerTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		34BA4CAC18409D8600021605 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				34BA4CB318409D8600021605 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		34BA4CBC18409D8600021605 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				34BA4CC118409D8600021605 /* XCTest.framework in Frameworks */,
+				34BA4CC418409D8600021605 /* UIKit.framework in Frameworks */,
+				34BA4CC218409D8600021605 /* Foundation.framework in Frameworks */,
+				34BA4CC718409D8600021605 /* libRoombaController.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		34BA4CA618409D8600021605 = {
+			isa = PBXGroup;
+			children = (
+				34BA4CB418409D8600021605 /* RoombaController */,
+				34BA4CC818409D8600021605 /* RoombaControllerTests */,
+				34BA4CB118409D8600021605 /* Frameworks */,
+				34BA4CB018409D8600021605 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		34BA4CB018409D8600021605 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				34BA4CAF18409D8600021605 /* libRoombaController.a */,
+				34BA4CBF18409D8600021605 /* RoombaControllerTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		34BA4CB118409D8600021605 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				34BA4CB218409D8600021605 /* Foundation.framework */,
+				34BA4CC018409D8600021605 /* XCTest.framework */,
+				34BA4CC318409D8600021605 /* UIKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		34BA4CB418409D8600021605 /* RoombaController */ = {
+			isa = PBXGroup;
+			children = (
+				34BA4CB718409D8600021605 /* RoombaController.h */,
+				34BA4CB918409D8600021605 /* RoombaController.m */,
+				34BA4CB518409D8600021605 /* Supporting Files */,
+			);
+			path = RoombaController;
+			sourceTree = "<group>";
+		};
+		34BA4CB518409D8600021605 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				34BA4CB618409D8600021605 /* RoombaController-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		34BA4CC818409D8600021605 /* RoombaControllerTests */ = {
+			isa = PBXGroup;
+			children = (
+				34BA4CCE18409D8600021605 /* RoombaControllerTests.m */,
+				34BA4CC918409D8600021605 /* Supporting Files */,
+			);
+			path = RoombaControllerTests;
+			sourceTree = "<group>";
+		};
+		34BA4CC918409D8600021605 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				34BA4CCA18409D8600021605 /* RoombaControllerTests-Info.plist */,
+				34BA4CCB18409D8600021605 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		34BA4CAE18409D8600021605 /* RoombaController */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 34BA4CD218409D8600021605 /* Build configuration list for PBXNativeTarget "RoombaController" */;
+			buildPhases = (
+				34BA4CAB18409D8600021605 /* Sources */,
+				34BA4CAC18409D8600021605 /* Frameworks */,
+				34BA4CAD18409D8600021605 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RoombaController;
+			productName = RoombaController;
+			productReference = 34BA4CAF18409D8600021605 /* libRoombaController.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		34BA4CBE18409D8600021605 /* RoombaControllerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 34BA4CD518409D8600021605 /* Build configuration list for PBXNativeTarget "RoombaControllerTests" */;
+			buildPhases = (
+				34BA4CBB18409D8600021605 /* Sources */,
+				34BA4CBC18409D8600021605 /* Frameworks */,
+				34BA4CBD18409D8600021605 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				34BA4CC618409D8600021605 /* PBXTargetDependency */,
+			);
+			name = RoombaControllerTests;
+			productName = RoombaControllerTests;
+			productReference = 34BA4CBF18409D8600021605 /* RoombaControllerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		34BA4CA718409D8600021605 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = "Robot Friendship Society";
+			};
+			buildConfigurationList = 34BA4CAA18409D8600021605 /* Build configuration list for PBXProject "RoombaController" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 34BA4CA618409D8600021605;
+			productRefGroup = 34BA4CB018409D8600021605 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				34BA4CAE18409D8600021605 /* RoombaController */,
+				34BA4CBE18409D8600021605 /* RoombaControllerTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		34BA4CBD18409D8600021605 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				34BA4CCD18409D8600021605 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		34BA4CAB18409D8600021605 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				34BA4CBA18409D8600021605 /* RoombaController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		34BA4CBB18409D8600021605 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				34BA4CCF18409D8600021605 /* RoombaControllerTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		34BA4CC618409D8600021605 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 34BA4CAE18409D8600021605 /* RoombaController */;
+			targetProxy = 34BA4CC518409D8600021605 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		34BA4CCB18409D8600021605 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				34BA4CCC18409D8600021605 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		34BA4CD018409D8600021605 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		34BA4CD118409D8600021605 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		34BA4CD318409D8600021605 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/RoombaController.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "RoombaController/RoombaController-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		34BA4CD418409D8600021605 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/RoombaController.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "RoombaController/RoombaController-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		34BA4CD618409D8600021605 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "RoombaController/RoombaController-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "RoombaControllerTests/RoombaControllerTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		34BA4CD718409D8600021605 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "RoombaController/RoombaController-Prefix.pch";
+				INFOPLIST_FILE = "RoombaControllerTests/RoombaControllerTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		34BA4CAA18409D8600021605 /* Build configuration list for PBXProject "RoombaController" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				34BA4CD018409D8600021605 /* Debug */,
+				34BA4CD118409D8600021605 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		34BA4CD218409D8600021605 /* Build configuration list for PBXNativeTarget "RoombaController" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				34BA4CD318409D8600021605 /* Debug */,
+				34BA4CD418409D8600021605 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		34BA4CD518409D8600021605 /* Build configuration list for PBXNativeTarget "RoombaControllerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				34BA4CD618409D8600021605 /* Debug */,
+				34BA4CD718409D8600021605 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 34BA4CA718409D8600021605 /* Project object */;
+}
