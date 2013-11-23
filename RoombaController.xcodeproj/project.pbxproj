@@ -6,16 +6,31 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		34BA4CE11840A03900021605 /* UniversalRoombaController */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 34BA4CE21840A03900021605 /* Build configuration list for PBXAggregateTarget "UniversalRoombaController" */;
+			buildPhases = (
+				34BA4CE51840A04700021605 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = UniversalRoombaController;
+			productName = UniversalRoombaController;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		34BA4CB318409D8600021605 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34BA4CB218409D8600021605 /* Foundation.framework */; };
-		34BA4CB818409D8600021605 /* RoombaController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 34BA4CB718409D8600021605 /* RoombaController.h */; };
-		34BA4CBA18409D8600021605 /* RoombaController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34BA4CB918409D8600021605 /* RoombaController.m */; };
 		34BA4CC118409D8600021605 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34BA4CC018409D8600021605 /* XCTest.framework */; };
 		34BA4CC218409D8600021605 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34BA4CB218409D8600021605 /* Foundation.framework */; };
-		34BA4CC418409D8600021605 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34BA4CC318409D8600021605 /* UIKit.framework */; };
 		34BA4CC718409D8600021605 /* libRoombaController.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 34BA4CAF18409D8600021605 /* libRoombaController.a */; };
 		34BA4CCD18409D8600021605 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 34BA4CCB18409D8600021605 /* InfoPlist.strings */; };
 		34BA4CCF18409D8600021605 /* RoombaControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 34BA4CCE18409D8600021605 /* RoombaControllerTests.m */; };
+		34BA4CDA18409DA600021605 /* RoombaController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34BA4CD918409DA600021605 /* RoombaController.m */; };
+		34BA4CDE18409EBD00021605 /* WiFiDongleController.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 34BA4CDD18409EBD00021605 /* WiFiDongleController.a */; };
+		34BA4CE018409FA300021605 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34BA4CDF18409FA300021605 /* UIKit.framework */; };
+		34BA4CE61840A0E400021605 /* RoombaController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 34BA4CD818409DA600021605 /* RoombaController.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,10 +47,10 @@
 		34BA4CAD18409D8600021605 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = "include/$(PRODUCT_NAME)";
+			dstPath = include;
 			dstSubfolderSpec = 16;
 			files = (
-				34BA4CB818409D8600021605 /* RoombaController.h in CopyFiles */,
+				34BA4CE61840A0E400021605 /* RoombaController.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -45,14 +60,15 @@
 		34BA4CAF18409D8600021605 /* libRoombaController.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRoombaController.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		34BA4CB218409D8600021605 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		34BA4CB618409D8600021605 /* RoombaController-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RoombaController-Prefix.pch"; sourceTree = "<group>"; };
-		34BA4CB718409D8600021605 /* RoombaController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoombaController.h; sourceTree = "<group>"; };
-		34BA4CB918409D8600021605 /* RoombaController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoombaController.m; sourceTree = "<group>"; };
 		34BA4CBF18409D8600021605 /* RoombaControllerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RoombaControllerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		34BA4CC018409D8600021605 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		34BA4CC318409D8600021605 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		34BA4CCA18409D8600021605 /* RoombaControllerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RoombaControllerTests-Info.plist"; sourceTree = "<group>"; };
 		34BA4CCC18409D8600021605 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		34BA4CCE18409D8600021605 /* RoombaControllerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoombaControllerTests.m; sourceTree = "<group>"; };
+		34BA4CD818409DA600021605 /* RoombaController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoombaController.h; sourceTree = "<group>"; };
+		34BA4CD918409DA600021605 /* RoombaController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoombaController.m; sourceTree = "<group>"; };
+		34BA4CDD18409EBD00021605 /* WiFiDongleController.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = WiFiDongleController.a; path = ../WiFiDongleController/Products/WiFiDongleController.a; sourceTree = "<group>"; };
+		34BA4CDF18409FA300021605 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				34BA4CDE18409EBD00021605 /* WiFiDongleController.a in Frameworks */,
 				34BA4CB318409D8600021605 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -68,8 +85,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				34BA4CE018409FA300021605 /* UIKit.framework in Frameworks */,
 				34BA4CC118409D8600021605 /* XCTest.framework in Frameworks */,
-				34BA4CC418409D8600021605 /* UIKit.framework in Frameworks */,
 				34BA4CC218409D8600021605 /* Foundation.framework in Frameworks */,
 				34BA4CC718409D8600021605 /* libRoombaController.a in Frameworks */,
 			);
@@ -100,9 +117,10 @@
 		34BA4CB118409D8600021605 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				34BA4CDF18409FA300021605 /* UIKit.framework */,
+				34BA4CDD18409EBD00021605 /* WiFiDongleController.a */,
 				34BA4CB218409D8600021605 /* Foundation.framework */,
 				34BA4CC018409D8600021605 /* XCTest.framework */,
-				34BA4CC318409D8600021605 /* UIKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -110,8 +128,8 @@
 		34BA4CB418409D8600021605 /* RoombaController */ = {
 			isa = PBXGroup;
 			children = (
-				34BA4CB718409D8600021605 /* RoombaController.h */,
-				34BA4CB918409D8600021605 /* RoombaController.m */,
+				34BA4CD818409DA600021605 /* RoombaController.h */,
+				34BA4CD918409DA600021605 /* RoombaController.m */,
 				34BA4CB518409D8600021605 /* Supporting Files */,
 			);
 			path = RoombaController;
@@ -204,6 +222,7 @@
 			targets = (
 				34BA4CAE18409D8600021605 /* RoombaController */,
 				34BA4CBE18409D8600021605 /* RoombaControllerTests */,
+				34BA4CE11840A03900021605 /* UniversalRoombaController */,
 			);
 		};
 /* End PBXProject section */
@@ -219,12 +238,28 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		34BA4CE51840A04700021605 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# define output folder environment variable\nUNIVERSAL_OUTPUTFOLDER=${SRCROOT}/Products\n\n# Step 1. Build Device and Simulator versions\nxcodebuild -target ${PROJECT_NAME} ONLY_ACTIVE_ARCH=NO -configuration ${CONFIGURATION} -sdk iphoneos  BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\"\nxcodebuild -target ${PROJECT_NAME} -configuration ${CONFIGURATION} -sdk iphonesimulator -arch i386 BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\"\n\n# make sure the output directory exists\nmkdir -p \"${UNIVERSAL_OUTPUTFOLDER}\"\n\n# Step 2. Create universal binary file using lipo\nlipo -create -output \"${UNIVERSAL_OUTPUTFOLDER}/${PROJECT_NAME}.a\" \"${BUILD_DIR}/${CONFIGURATION}-iphoneos/lib${PROJECT_NAME}.a\" \"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/lib${PROJECT_NAME}.a\"\n\n# Last touch. copy the header files. Just for convenience\ncp -R \"${BUILD_DIR}/${CONFIGURATION}-iphoneos/include\" \"${UNIVERSAL_OUTPUTFOLDER}/\"\n\nrm -r \"${SRCROOT}/build\"";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		34BA4CAB18409D8600021605 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				34BA4CBA18409D8600021605 /* RoombaController.m in Sources */,
+				34BA4CDA18409DA600021605 /* RoombaController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -291,7 +326,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -323,6 +358,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -334,6 +370,16 @@
 				DSTROOT = /tmp/RoombaController.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RoombaController/RoombaController-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"/Users/jesslatimer/Work/WiFiDongleController/Products/include/**",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/jesslatimer/Work/WiFiDongleController/Products/**",
+				);
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -346,6 +392,16 @@
 				DSTROOT = /tmp/RoombaController.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RoombaController/RoombaController-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"/Users/jesslatimer/Work/WiFiDongleController/Products/include/**",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/jesslatimer/Work/WiFiDongleController/Products/**",
+				);
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -390,6 +446,20 @@
 			};
 			name = Release;
 		};
+		34BA4CE31840A03900021605 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		34BA4CE41840A03900021605 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -415,6 +485,14 @@
 			buildConfigurations = (
 				34BA4CD618409D8600021605 /* Debug */,
 				34BA4CD718409D8600021605 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		34BA4CE21840A03900021605 /* Build configuration list for PBXAggregateTarget "UniversalRoombaController" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				34BA4CE31840A03900021605 /* Debug */,
+				34BA4CE41840A03900021605 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
