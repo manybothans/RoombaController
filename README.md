@@ -10,7 +10,7 @@ Required Parts:
  - A standard 7-pin Male/Male Mini-DIN cable
 
 This controller library also depends on the WiFiDongleController library located here:
-http://github.com/manybothans/WiFiDongleController
+ - http://github.com/manybothans/WiFiDongleController
 
 From RoombaController's "Products" directory, add "RoombaController.a" to the "Link Binary with Library" Build Phase of your Application's Target. Also add "/path/to/RoombaController/Products/include" to "Header Search Paths" in your Application's Target's Build Settings.
 
