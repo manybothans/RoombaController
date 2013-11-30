@@ -48,6 +48,7 @@
 @optional
 -(void)handleRoombaBumbEvent;
 -(void)handleRoombaMovementDistance:(NSNumber *)distance angle:(NSNumber *)angle;
+-(void)handleRoombaSensorPacket:(NSData *)sensorPacket;
 @end
 
 @interface RoombaController : NSObject <WiFiDongleControllerDelegate>
@@ -79,5 +80,6 @@
 -(BOOL)driveStraightDistance:(NSNumber *)distanceMM;
 -(BOOL)driveTurnAngle:(NSNumber *)anngleRadians;
 -(BOOL)driveStop;
+-(void)forceDockSeeking;
 
 @end

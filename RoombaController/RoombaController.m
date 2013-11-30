@@ -34,12 +34,18 @@
 
 //Private Constants
 #define ROOMBCMD_START 0x80
+#define ROOMBCMD_BAUD 0x81
 #define ROOMBCMD_CONTROL 0x82
+#define ROOMBCMD_SAFE 0x83
 #define ROOMBCMD_FULL 0x84
 #define ROOMBCMD_POWER 0x85
 #define ROOMBCMD_SENSOR 0x8E
 #define ROOMBCMD_MOTORS 0x8A
 #define ROOMBCMD_DRIVE 0x89
+#define ROOMBCMD_SPOT 0x86
+#define ROOMBCMD_CLEAN 0x87
+#define ROOMBCMD_MAX 0x88
+#define ROOMBCMD_DOCK 0x8F
 
 
 @interface RoombaController ()
@@ -62,13 +68,19 @@
 -(void)beginControllingRoomba;
 -(void)startQueryingSensors;
 -(void)SensorPacketReceiver:(WiFiDongleController *)connectedDongle;
--(void)processReceviedSensorPacket:(NSMutableData *)sensorPacket;
+-(void)processReceviedSensorPacket:(NSData *)sensorPacket;
 -(void)sendRoombaStartCommands;
 -(void)wakeUpRoombaWithDeviceDetect;
 -(BOOL)sendStartCommand;
+-(BOOL)sendBaudCommand:(NSUInteger)baudRate;
 -(BOOL)sendControlCommand;
+-(BOOL)sendSafeCommand;
 -(BOOL)sendFullCommand;
 -(BOOL)sendPowerCommand;
+-(BOOL)sendSpotCommand;
+-(BOOL)sendCleanCommand;
+-(BOOL)sendMaxCommand;
+-(BOOL)sendDockCommand;
 -(BOOL)sendRoombaCommandBytes:(void*)commandBytes length:(int)length;
 @end
 
@@ -213,7 +225,7 @@
             
             if(byteCount >= 26)
             {
-                [self performSelectorOnMainThread:@selector(processReceviedSensorPacket:) withObject:receivedData waitUntilDone:YES];
+                [self performSelectorOnMainThread:@selector(processReceviedSensorPacket:) withObject:[NSData dataWithData:receivedData] waitUntilDone:YES];
                 
                 //clear data structure for this next pass
                 [receivedData replaceBytesInRange:NSMakeRange(0, [receivedData length]) withBytes:NULL length:0];
@@ -227,7 +239,7 @@
 	DLog(@"RoombaController RECEIVER KILLED");
 }
 
--(void)processReceviedSensorPacket:(NSMutableData *)sensorPacket
+-(void)processReceviedSensorPacket:(NSData *)sensorPacket
 {
 	//DLog(@"RoombaController processReceviedSensorPacket");
     
@@ -239,7 +251,10 @@
     
     //bumps, wheel drops, walls, etc
     if(buffer[0] != 0x00)
-        [[self delegate] handleRoombaBumbEvent];
+    {
+        if([[self delegate] respondsToSelector:@selector(handleRoombaBumbEvent)])
+            [[self delegate] handleRoombaBumbEvent];
+    }
     
     //movement since last sensor query
     int distanceMM = ((int)buffer[12] << 8) + ((int)buffer[13]);
@@ -248,8 +263,11 @@
     if(IS_NEGATIVE(distanceDifference))
         angleRadians = angleRadians + 2;
     
+    if([[self delegate] respondsToSelector:@selector(handleRoombaMovementDistance:angle:)])
+        [[self delegate] handleRoombaMovementDistance:[NSNumber numberWithInt:distanceMM] angle:[NSNumber numberWithFloat:angleRadians]];
     
-    [[self delegate] handleRoombaMovementDistance:[NSNumber numberWithInt:distanceMM] angle:[NSNumber numberWithFloat:angleRadians]];
+    if([[self delegate] respondsToSelector:@selector(handleRoombaSensorPacket:)])
+        [[self delegate] handleRoombaSensorPacket:sensorPacket];
     
     free(buffer);
 }
@@ -275,13 +293,79 @@
     return [self sendRoombaCommandBytes:&commandByte length:sizeof(commandByte)];
 }
 
+-(BOOL)sendBaudCommand:(NSUInteger)baudRate
+{
+	DLog(@"RoombaController sendBaudCommand");
+    
+    //changes roomba SCI baud rate
+    //must wait 100ms after sending this
+    
+    int8_t baudCode;
+    
+    //supported baud rates and associated baud command codes
+    switch(baudRate)
+    {
+        case 300:
+            baudCode = 0;
+            break;
+        case 600:
+            baudCode = 1;
+            break;
+        case 1200:
+            baudCode = 2;
+            break;
+        case 2400:
+            baudCode = 3;
+            break;
+        case 4800:
+            baudCode = 4;
+            break;
+        case 9600:
+            baudCode = 5;
+            break;
+        case 14400:
+            baudCode = 6;
+            break;
+        case 19200:
+            baudCode = 7;
+            break;
+        case 28800:
+            baudCode = 8;
+            break;
+        case 38400:
+            baudCode = 9;
+            break;
+        case 57600:
+            baudCode = 10;
+            break;
+        case 115200:
+            baudCode = 11;
+            break;
+        default:
+            return FALSE; //unsopprted baud rate
+    }
+    
+    int8_t commandByteArray[] = {ROOMBCMD_BAUD, baudCode};
+    return [self sendRoombaCommandBytes:&commandByteArray length:sizeof(commandByteArray)];
+}
+
 -(BOOL)sendControlCommand
 {
 	DLog(@"RoombaController sendControlCommand");
     
-    //puts the roomba into "safe" mode
+    //changes roomba mode from passive to safe
     
     int8_t commandByte = ROOMBCMD_CONTROL;
+    return [self sendRoombaCommandBytes:&commandByte length:sizeof(commandByte)];
+}
+
+-(BOOL)sendSafeCommand
+{
+	DLog(@"RoombaController sendSafeCommand");
+    
+    //changes roomba mode from full to safe
+    
+    int8_t commandByte = ROOMBCMD_SAFE;
     return [self sendRoombaCommandBytes:&commandByte length:sizeof(commandByte)];
 }
 
@@ -289,7 +373,7 @@
 {
 	DLog(@"RoombaController sendFullCommand");
     
-    //puts the roomba into "full" mode
+    //changes roomba mode from safe to full
     
     int8_t commandByte = ROOMBCMD_FULL;
     return [self sendRoombaCommandBytes:&commandByte length:sizeof(commandByte)];
@@ -302,6 +386,46 @@
     //puts the roomba to sleep
     
     int8_t commandByte = ROOMBCMD_POWER;
+    return [self sendRoombaCommandBytes:&commandByte length:sizeof(commandByte)];
+}
+
+-(BOOL)sendSpotCommand
+{
+	DLog(@"RoombaController sendSpotCommand");
+    
+    //starts spot cleaning cycle
+    
+    int8_t commandByte = ROOMBCMD_SPOT;
+    return [self sendRoombaCommandBytes:&commandByte length:sizeof(commandByte)];
+}
+
+-(BOOL)sendCleanCommand
+{
+	DLog(@"RoombaController sendCleanCommand");
+    
+    //starts regular cleaning cycle
+    
+    int8_t commandByte = ROOMBCMD_CLEAN;
+    return [self sendRoombaCommandBytes:&commandByte length:sizeof(commandByte)];
+}
+
+-(BOOL)sendMaxCommand
+{
+	DLog(@"RoombaController sendMaxCommand");
+    
+    //starts max cleaning cycle
+    
+    int8_t commandByte = ROOMBCMD_MAX;
+    return [self sendRoombaCommandBytes:&commandByte length:sizeof(commandByte)];
+}
+
+-(BOOL)sendDockCommand
+{
+	DLog(@"RoombaController sendDockCommand");
+    
+    //makes the roomba start looking for docking bay
+    
+    int8_t commandByte = ROOMBCMD_DOCK;
     return [self sendRoombaCommandBytes:&commandByte length:sizeof(commandByte)];
 }
 
@@ -379,6 +503,15 @@
 	DLog(@"RoombaController driveStop");
 
     return [self sendDriveCommandwithVelocity:ROOMB_VELOCITY_STOPPED radius:ROOMB_RADIUS_STRAIGT];
+}
+
+-(void)forceDockSeeking
+{
+	DLog(@"RoombaController forceDockSeeking");
+    
+    //need to wait between changing roomba control states
+    [self performSelector:@selector(sendSpotCommand) withObject:nil afterDelay:0.1];
+    [self performSelector:@selector(sendDockCommand) withObject:nil afterDelay:0.2];
 }
 
 -(BOOL)sendRoombaCommandBytes:(void*)commandBytes length:(int)length
