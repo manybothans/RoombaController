@@ -14,6 +14,6 @@ This controller library also depends on the WiFiDongleController library located
 
 From RoombaController's "Products" directory, add "RoombaController.a" to the "Link Binary with Library" Build Phase of your Application's Target. Also add "/path/to/RoombaController/Products/include" to "Header Search Paths" in your Application's Target's Build Settings.
 
-Also, from WiFiDongleController's "Products" directory, add "WiFiDongleController.a" to the "Link Binary with Library" Build Phase of your Application's Target. Also add "/path/to/WiFIDongleController/trunk/Products/include" to "Header Search Paths" in your Application's Target's Build Settings.
+Also, from WiFiDongleController's "Products" directory, add "WiFiDongleController.a" to the "Link Binary with Library" Build Phase of your Application's Target. Also add "/path/to/WiFIDongleController/Products/include" to "Header Search Paths" in your Application's Target's Build Settings.
 
 SystemConfiguration.framework must also be included in the "Link Binary with Library" Build Phase of your Application's Target.
