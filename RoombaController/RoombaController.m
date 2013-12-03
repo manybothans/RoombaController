@@ -391,7 +391,7 @@
 
 -(BOOL)sendSpotCommand
 {
-	DLog(@"RoombaController sendSpotCommand");
+    DLog(@"RoombaController sendSpotCommand");
     
     //starts spot cleaning cycle
     
