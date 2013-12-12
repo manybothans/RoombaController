@@ -30,15 +30,6 @@
 #import <UIKit/UIKit.h>
 #import "WiFiDongleController.h"
 
-//Public Constants
-#define ROOMB_VELOCITY_MAX 500
-#define ROOMB_VELOCITY_STOPPED 0
-#define ROOMB_VELOCITY_MOVE 150
-#define ROOMB_RADIUS_MAX 2000
-#define ROOMB_RADIUS_STRAIGT 0x8000
-#define ROOMB_RADIUS_SPIN 1
-#define ROOMB_WHEELBASE 258
-
 
 @protocol RoombaControllerDelegate <NSObject>
 @required
@@ -47,7 +38,6 @@
 -(void)roombaControllerDidStop;
 @optional
 -(void)handleRoombaBumbEvent;
--(void)handleRoombaMovementDistance:(NSNumber *)distance angle:(NSNumber *)angle;
 -(void)handleRoombaSensorPacket:(NSData *)sensorPacket;
 @end
 
@@ -59,6 +49,7 @@
     NSNumber *VacuumIsRunning;
     NSNumber *currentVelocity;
     NSNumber *currentRadius;
+    
 }
 
 @property (retain) id delegate;
@@ -81,5 +72,19 @@
 -(BOOL)driveTurnAngle:(NSNumber *)anngleRadians;
 -(BOOL)driveStop;
 -(void)forceDockSeeking;
+
+//Public Constants
+typedef enum
+{
+    kMaxVelocity = 500,
+    kStopVelocity = 0,
+    kDriveVelocity = 150,
+    kSpinVelocity = 200,
+    kMaxRadius = 2000,
+    kStraightRadius = 0x8000,
+    kSpinRadius = 1,
+    kWheelbase = 258
+
+} RoombaValues;
 
 @end

@@ -32,21 +32,6 @@
 #define IS_NEGATIVE(x) (x<0)
 #define STOP_TIMER(t) if(t!=nil){[t invalidate];t = nil;}
 
-//Private Constants
-#define ROOMBCMD_START 0x80
-#define ROOMBCMD_BAUD 0x81
-#define ROOMBCMD_CONTROL 0x82
-#define ROOMBCMD_SAFE 0x83
-#define ROOMBCMD_FULL 0x84
-#define ROOMBCMD_POWER 0x85
-#define ROOMBCMD_SENSOR 0x8E
-#define ROOMBCMD_MOTORS 0x8A
-#define ROOMBCMD_DRIVE 0x89
-#define ROOMBCMD_SPOT 0x86
-#define ROOMBCMD_CLEAN 0x87
-#define ROOMBCMD_MAX 0x88
-#define ROOMBCMD_DOCK 0x8F
-
 
 @interface RoombaController ()
 {
@@ -82,6 +67,27 @@
 -(BOOL)sendMaxCommand;
 -(BOOL)sendDockCommand;
 -(BOOL)sendRoombaCommandBytes:(void*)commandBytes length:(int)length;
+
+
+//Private Constants
+typedef enum
+{
+    kCMD_START = 0x80,
+    kCMD_BAUD = 0x81,
+    kCMD_CONTROL = 0x82,
+    kCMD_SAFE = 0x83,
+    kCMD_FULL = 0x84,
+    kCMD_POWER = 0x85,
+    kCMD_SENSOR = 0x8E,
+    kCMD_MOTORS = 0x8A,
+    kCMD_DRIVE = 0x89,
+    kCMD_SPOT = 0x86,
+    kCMD_CLEAN = 0x87,
+    kCMD_MAX = 0x88,
+    kCMD_DOCK = 0x8F
+
+} RoombaCommands;
+
 @end
 
 
@@ -259,12 +265,28 @@
     //movement since last sensor query
     int distanceMM = ((int)buffer[12] << 8) + ((int)buffer[13]);
     int distanceDifference = ((int)buffer[14] << 8) + ((int)buffer[15]);
-    float angleRadians = (2 * (float)distanceDifference) / ROOMB_WHEELBASE;
+    float angleRadians = (2 * (float)distanceDifference) / kWheelbase;
     if(IS_NEGATIVE(distanceDifference))
         angleRadians = angleRadians + 2;
     
-    if([[self delegate] respondsToSelector:@selector(handleRoombaMovementDistance:angle:)])
-        [[self delegate] handleRoombaMovementDistance:[NSNumber numberWithInt:distanceMM] angle:[NSNumber numberWithFloat:angleRadians]];
+    NSDictionary *movementData = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:
+                                                                      [NSNumber numberWithInt:distanceMM],
+                                                                      [NSNumber numberWithFloat:angleRadians], nil]
+                                                             forKeys:[NSArray arrayWithObjects:@"distanceMM", @"angleRadians", nil]];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"RoombaDidReturnMovementData"
+                                                        object:self
+                                                      userInfo:movementData];
+    
+    
+    int batteryCharge = ((int)buffer[22] << 8) + ((int)buffer[23]);
+    int batteryCapacity = ((int)buffer[24] << 8) + ((int)buffer[25]);
+    double batteryPercentage = (double)batteryCharge / (double)batteryCapacity;
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"RoombaDidReturnBatteryPercentage"
+                                                        object:self
+                                                      userInfo:[NSDictionary dictionaryWithObject:[NSNumber numberWithDouble:batteryPercentage] forKey:@"battPercent"]];
+    
     
     if([[self delegate] respondsToSelector:@selector(handleRoombaSensorPacket:)])
         [[self delegate] handleRoombaSensorPacket:sensorPacket];
@@ -289,7 +311,7 @@
     
     //enables roomba serial command interface (SCI)
     
-    int8_t commandByte = ROOMBCMD_START;
+    int8_t commandByte = kCMD_START;
     return [self sendRoombaCommandBytes:&commandByte length:sizeof(commandByte)];
 }
 
@@ -345,7 +367,7 @@
             return FALSE; //unsopprted baud rate
     }
     
-    int8_t commandByteArray[] = {ROOMBCMD_BAUD, baudCode};
+    int8_t commandByteArray[] = {kCMD_BAUD, baudCode};
     return [self sendRoombaCommandBytes:&commandByteArray length:sizeof(commandByteArray)];
 }
 
@@ -355,7 +377,7 @@
     
     //changes roomba mode from passive to safe
     
-    int8_t commandByte = ROOMBCMD_CONTROL;
+    int8_t commandByte = kCMD_CONTROL;
     return [self sendRoombaCommandBytes:&commandByte length:sizeof(commandByte)];
 }
 
@@ -365,7 +387,7 @@
     
     //changes roomba mode from full to safe
     
-    int8_t commandByte = ROOMBCMD_SAFE;
+    int8_t commandByte = kCMD_SAFE;
     return [self sendRoombaCommandBytes:&commandByte length:sizeof(commandByte)];
 }
 
@@ -375,7 +397,7 @@
     
     //changes roomba mode from safe to full
     
-    int8_t commandByte = ROOMBCMD_FULL;
+    int8_t commandByte = kCMD_FULL;
     return [self sendRoombaCommandBytes:&commandByte length:sizeof(commandByte)];
 }
 
@@ -385,7 +407,7 @@
     
     //puts the roomba to sleep
     
-    int8_t commandByte = ROOMBCMD_POWER;
+    int8_t commandByte = kCMD_POWER;
     return [self sendRoombaCommandBytes:&commandByte length:sizeof(commandByte)];
 }
 
@@ -395,7 +417,7 @@
     
     //starts spot cleaning cycle
     
-    int8_t commandByte = ROOMBCMD_SPOT;
+    int8_t commandByte = kCMD_SPOT;
     return [self sendRoombaCommandBytes:&commandByte length:sizeof(commandByte)];
 }
 
@@ -405,7 +427,7 @@
     
     //starts regular cleaning cycle
     
-    int8_t commandByte = ROOMBCMD_CLEAN;
+    int8_t commandByte = kCMD_CLEAN;
     return [self sendRoombaCommandBytes:&commandByte length:sizeof(commandByte)];
 }
 
@@ -415,7 +437,7 @@
     
     //starts max cleaning cycle
     
-    int8_t commandByte = ROOMBCMD_MAX;
+    int8_t commandByte = kCMD_MAX;
     return [self sendRoombaCommandBytes:&commandByte length:sizeof(commandByte)];
 }
 
@@ -425,7 +447,7 @@
     
     //makes the roomba start looking for docking bay
     
-    int8_t commandByte = ROOMBCMD_DOCK;
+    int8_t commandByte = kCMD_DOCK;
     return [self sendRoombaCommandBytes:&commandByte length:sizeof(commandByte)];
 }
 
@@ -435,7 +457,7 @@
     
     //sends request for full sensor packet
     
-    int8_t commandByteArray[] = {ROOMBCMD_SENSOR, 0x00};
+    int8_t commandByteArray[] = {kCMD_SENSOR, 0x00};
     return [self sendRoombaCommandBytes:&commandByteArray length:sizeof(commandByteArray)];
 }
 
@@ -446,7 +468,7 @@
     self.VacuumIsRunning = [NSNumber numberWithBool:YES];
     
     //turn on vacuum, main brush, side brush
-    int8_t commandByteArray[] = {ROOMBCMD_MOTORS, 0x07};
+    int8_t commandByteArray[] = {kCMD_MOTORS, 0x07};
     return [self sendRoombaCommandBytes:&commandByteArray length:sizeof(commandByteArray)];
 }
 
@@ -457,7 +479,7 @@
     self.VacuumIsRunning = [NSNumber numberWithBool:NO];
     
     //turn off vacuum, main brush, side brush (ie all motors)
-    int8_t commandByteArray[] = {ROOMBCMD_MOTORS, 0x00};
+    int8_t commandByteArray[] = {kCMD_MOTORS, 0x00};
     return [self sendRoombaCommandBytes:&commandByteArray length:sizeof(commandByteArray)];
 }
 
@@ -468,7 +490,7 @@
     self.currentVelocity = [NSNumber numberWithInteger:velocity];
     self.currentRadius = [NSNumber numberWithInteger:radius];
     
-    int8_t commandByteArray[] = {   ROOMBCMD_DRIVE,
+    int8_t commandByteArray[] = {   kCMD_DRIVE,
                                     (int8_t)(velocity >> 8),
                                     (int8_t)velocity,
                                     (int8_t)(radius >> 8),
@@ -481,28 +503,28 @@
 {
 	DLog(@"RoombaController driveStraightDistance");
     
-    CGFloat time = [distanceMM floatValue] / ROOMB_VELOCITY_MOVE;
+    CGFloat time = [distanceMM floatValue] / kDriveVelocity;
     
     self.driveTimer = [NSTimer scheduledTimerWithTimeInterval:time target:self selector:@selector(driveStop) userInfo:nil repeats:NO];
-    return [self sendDriveCommandwithVelocity:ROOMB_VELOCITY_MOVE radius:ROOMB_RADIUS_STRAIGT];
+    return [self sendDriveCommandwithVelocity:kDriveVelocity radius:kStraightRadius];
 }
 
 -(BOOL)driveTurnAngle:(NSNumber *)anngleRadians
 {
 	DLog(@"RoombaController driveTurnAngle");
     
-    CGFloat time = ([anngleRadians floatValue] * (ROOMB_WHEELBASE/2)) / ROOMB_VELOCITY_MOVE;
+    CGFloat time = ([anngleRadians floatValue] * (kWheelbase/2)) / kDriveVelocity;
     DLog(@"%f",time);
     
     self.driveTimer = [NSTimer scheduledTimerWithTimeInterval:time target:self selector:@selector(driveStop) userInfo:nil repeats:NO];
-    return [self sendDriveCommandwithVelocity:ROOMB_VELOCITY_MOVE radius:ROOMB_RADIUS_SPIN];
+    return [self sendDriveCommandwithVelocity:kDriveVelocity radius:kSpinRadius];
 }
 
 -(BOOL)driveStop
 {
 	DLog(@"RoombaController driveStop");
 
-    return [self sendDriveCommandwithVelocity:ROOMB_VELOCITY_STOPPED radius:ROOMB_RADIUS_STRAIGT];
+    return [self sendDriveCommandwithVelocity:kStopVelocity radius:kStraightRadius];
 }
 
 -(void)forceDockSeeking
