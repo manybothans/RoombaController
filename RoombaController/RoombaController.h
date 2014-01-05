@@ -72,6 +72,10 @@
 -(BOOL)driveTurnAngle:(NSNumber *)anngleRadians;
 -(BOOL)driveStop;
 -(void)forceDockSeeking;
+-(BOOL)sendSpotCommand;
+-(BOOL)sendCleanCommand;
+-(BOOL)sendMaxCommand;
+-(void)returnToFullControlMode;
 
 //Public Constants
 typedef enum

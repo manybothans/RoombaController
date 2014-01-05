@@ -62,9 +62,6 @@
 -(BOOL)sendSafeCommand;
 -(BOOL)sendFullCommand;
 -(BOOL)sendPowerCommand;
--(BOOL)sendSpotCommand;
--(BOOL)sendCleanCommand;
--(BOOL)sendMaxCommand;
 -(BOOL)sendDockCommand;
 -(BOOL)sendRoombaCommandBytes:(void*)commandBytes length:(int)length;
 
@@ -281,7 +278,7 @@ typedef enum
     
     int batteryCharge = ((int)buffer[22] << 8) + ((int)buffer[23]);
     int batteryCapacity = ((int)buffer[24] << 8) + ((int)buffer[25]);
-    double batteryPercentage = (double)batteryCharge / (double)batteryCapacity;
+    double batteryPercentage = 100 * round((double)batteryCharge / (double)batteryCapacity);
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"RoombaDidReturnBatteryPercentage"
                                                         object:self
@@ -532,9 +529,17 @@ typedef enum
 	DLog(@"RoombaController forceDockSeeking");
     
     //need to wait between changing roomba control states
-    [self performSelector:@selector(sendSpotCommand) withObject:nil afterDelay:0.1];
+    [self performSelector:@selector(sendCleanCommand) withObject:nil afterDelay:0.1];
     [self performSelector:@selector(sendDockCommand) withObject:nil afterDelay:0.2];
 }
+
+-(void)returnToFullControlMode
+{
+    [self.sensorPollingTimer fire];
+    [self performSelector:@selector(sendControlCommand) withObject:nil afterDelay:0.1];
+    [self performSelector:@selector(sendFullCommand) withObject:nil afterDelay:0.2];
+}
+
 
 -(BOOL)sendRoombaCommandBytes:(void*)commandBytes length:(int)length
 {
